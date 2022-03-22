@@ -20,10 +20,10 @@ interface DaoInterview {
         // all the data of database.
         @Query("SELECT * FROM interviewtable WHERE istype = :isFavorited" )
         fun getAllInterviewItems(isFavorited: String): List<InterviewModel>
-    @Query("UPDATE interviewtable SET isBookMarked = :isLiked WHERE id=  :id")
+    @Query("UPDATE interviewtable SET isBookMarked = :isLiked WHERE id=  :id " )
     fun addToBookmarks(id: Int, isLiked: Boolean)
-    @Query("SELECT * from interviewtable WHERE isBookMarked = :isFavorited ORDER BY id ASC")
-    fun getFavorites(isFavorited: Boolean): List<InterviewModel>
+    @Query("SELECT * from interviewtable WHERE istype = :istype AND isBookMarked = :isFavorited  ORDER BY id ASC")
+    fun getFavorites(istype: String,isFavorited: Boolean): List<InterviewModel>
    /* @Query("UPDATE interviewtable SET isBookMarked = :isFavorited WHERE id = :id")
     fun addToFavorites(id: Int, isFavorited: Boolean)*/
 

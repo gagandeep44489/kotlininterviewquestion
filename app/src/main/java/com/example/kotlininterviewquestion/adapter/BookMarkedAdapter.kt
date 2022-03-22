@@ -151,7 +151,8 @@ class AdapterBookmark(private var mData: List<InterviewModel>,
 
         holder.star.setOnClickListener{
             Log.e(TAG, "onBindViewHolder: tapped getting:$position")
-            listener.onDeleted(a, position)
+             listener.onDeleted(a, position)
+
         }
     }
 

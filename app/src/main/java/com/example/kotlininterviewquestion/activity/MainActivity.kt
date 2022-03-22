@@ -1,29 +1,23 @@
 
 package com.example.kotlininterviewquestion.activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.*
-import android.view.View.inflate
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.widget.ViewPager2
-import com.example.kotlininterviewquestion.*
+import com.example.kotlininterviewquestion.AppConstant
+import com.example.kotlininterviewquestion.CustomAdapter
+import com.example.kotlininterviewquestion.InterviewModel
+import com.example.kotlininterviewquestion.R
 import com.example.kotlininterviewquestion.room.MyDatabase
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -71,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         }
         editor.putBoolean("java", false).commit()
 
-        Log.e(TAG, "onCreate: what is problem",)
+        Log.e(TAG, "onCreate: what is problem")
 
         setViewPagerListener()
 /*
@@ -94,7 +88,7 @@ class MainActivity : AppCompatActivity() {
             Log.e(TAG, "onCreate this is checking third party: ")
         }
         editor.putBoolean("gagan", false).commit()*/
-        Log.e(TAG, "this is checkig: ",)
+        Log.e(TAG, "this is checkig: ")
 
 
     }
@@ -134,7 +128,7 @@ class MainActivity : AppCompatActivity() {
 
     fun insertIntoLocal1() {
         myDb = MyDatabase.createDatabase(this@MainActivity)
-        Log.e(TAG, "insertIntoLocal1: this first database",)
+        Log.e(TAG, "insertIntoLocal1: this first database")
 
 
 
@@ -254,6 +248,22 @@ class MainActivity : AppCompatActivity() {
         override fun isViewFromObject(view: View, `object`: Any): Boolean {
             return view === `object`
         }
+        override fun getPageTitle(position: Int): CharSequence? {
+            when (position) {
+                0 -> {
+                    return "Kotlin Question"
+                }
+                1 -> {
+                    return "Java Question"
+                }
+            }
+            return super.getPageTitle(position)
+        }
+
+
+
+
+
 
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
 
@@ -278,7 +288,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
-            Log.e(TAG, "instantiateItem: we are checking 1"+ interviewList, )
+
+            Log.e(TAG, "instantiateItem: we are checking 1" + interviewList)
 
 
             recyclerview?.adapter = CustomAdapter(interviewList, object : CustomAdapter.ListenersAudio {
@@ -300,6 +311,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             )
+
 
 
 
